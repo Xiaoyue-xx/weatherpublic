@@ -6,6 +6,9 @@
     .skin { fill: var(--skin-tone, #c98262); }
     .skin-shadow { fill: var(--skin-shadow, #a85f49); }
     .blush { fill: var(--skin-blush, #df8c82); }
+    .eye-base { fill: #e5a6c4; }
+    .eye-iris { fill: #744762; }
+    .eye-light { fill: #fff4dc; }
     .hair-dark { fill: #30243b; }
     .hair-warm { fill: #70422f; }
     .hair-highlight { fill: #a86742; }
@@ -110,13 +113,38 @@
       <path class="garment-dark pixel-outline" d="M138 354H170V416H176V424H184V432H180V438H134V420H138Z"/>
       <path class="pixel-detail" d="M90 380H124M138 380H170M74 434H128M136 434H180"/>
     </g>
+    <g id="pixel-big-eyes">
+      <path class="ink pixel" d="M88 94H94V88H116V94H122V120H116V126H94V120H88Z"/>
+      <path class="eye-base pixel" d="M94 94H114V100H118V116H112V120H96V114H92V100H94Z"/>
+      <path class="eye-iris pixel" d="M100 96H112V102H116V114H110V118H100V112H96V102H100Z"/>
+      <path class="eye-light pixel" d="M98 98H106V106H98Z"/>
+      <path class="ink pixel" d="M138 94H144V88H166V94H172V120H166V126H144V120H138Z"/>
+      <path class="eye-base pixel" d="M144 94H164V100H168V116H162V120H146V114H142V100H144Z"/>
+      <path class="eye-iris pixel" d="M146 96H158V102H162V114H156V118H146V112H142V102H146Z"/>
+      <path class="eye-light pixel" d="M148 98H156V106H148Z"/>
+    </g>
+    <g id="pixel-hood">
+      <path class="garment-dark pixel-outline" d="M32 154V82H40V58H56V38H76V22H100V14H160V14H184V22H204V38H224V58H232V82H240V154H232V172H216V188H192V200H68V188H48V172H40V160H32Z"/>
+      <path class="garment pixel" d="M48 148V84H56V62H72V44H88V30H108V24H152V24H172V30H188V44H204V62H216V84H224V148H216V164H200V176H184V184H76V176H60V164H48Z"/>
+      <path class="garment-alt pixel" d="M64 72H80V54H98V40H116V48H102V60H86V78H72V106H60V88H64Z"/>
+    </g>
   </defs>
+
+  <symbol id="base-tunic" viewBox="0 0 260 480">
+    <g class="pixel">
+      <path class="garment-dark pixel-outline" d="M108 150H152L166 164L174 186L170 218L178 246L180 286L168 300H92L80 286L82 246L90 218L86 186L94 164Z"/>
+      <path class="garment pixel" d="M110 158H150L158 168L166 188L162 218L170 246L172 282L164 292H96L88 282L90 246L98 218L94 188L102 168Z"/>
+      <path class="garment-alt pixel" d="M144 268H164V278H156V286H144Z"/>
+    </g>
+  </symbol>
 
   <symbol id="character-crop" viewBox="0 0 260 480">
     <g class="pixel">
-      <g transform="matrix(.88 0 0 .88 15.6 18.24)">
+      <use href="#pixel-hood"/>
+      <g transform="matrix(1.3 0 0 1.18 -39 -16)">
       <path class="hair-dark pixel-outline" d="M82 62H90V46H106V30H154V38H170V46H178V62H186V118H174V142H86V126H74V78H82Z"/>
       </g>
+      <g transform="matrix(1 0 0 .62 0 47)">
       <path class="skin pixel-outline" d="M90 268H130L128 304L124 342L124 368L120 412H98L96 372L90 344L88 306Z"/>
       <path class="skin pixel-outline" d="M130 268H170L172 304L168 342L164 370L162 412H140L138 372L134 344L132 306Z"/>
       <path class="skin-shadow pixel" d="M112 352H122V404H116ZM138 352H148V404H142Z"/>
@@ -125,15 +153,13 @@
       <path class="skin pixel-outline" d="M88 184L78 198L72 222L70 240L72 260L76 280L74 290L74 306L82 314L92 312L96 302L94 288L92 266L90 246L92 224L96 204Z"/>
       <path class="skin pixel-outline" d="M172 188L182 202L188 226L190 244L186 262L180 278L184 288L184 304L176 312L166 310L162 300L164 286L168 268L170 248L168 226L166 206Z"/>
       <rect class="skin-shadow" x="122" y="150" width="18" height="12"/>
-      <g transform="matrix(.88 0 0 .88 15.6 18.24)">
+      </g>
+      <g transform="matrix(1.3 0 0 1.18 -39 -16)">
       <path class="skin pixel-outline" d="M88 72H96V56H112V48H154V56H170V72H178V120H170V136H154V152H106V144H90V128H82V80H88Z"/>
       <path class="skin-shadow pixel" d="M90 112H102V132H114V144H104V136H90ZM158 112H170V132H158Z"/>
       <path class="hair-dark pixel" d="M86 64H102V48H154V56H170V72H174V84H154V76H142V68H126V80H110V88H98V96H86Z"/>
       <path class="hair-highlight pixel" d="M108 42H150V50H118V58H100V50H108Z"/>
-      <rect class="ink" x="104" y="92" width="10" height="14"/>
-      <rect class="ink" x="148" y="92" width="10" height="14"/>
-      <rect class="white" x="104" y="92" width="4" height="5"/>
-      <rect class="white" x="148" y="92" width="4" height="5"/>
+      <use href="#pixel-big-eyes"/>
       <path class="ink" d="M120 124H144V132H136V138H128V132H120Z"/>
       <rect class="blush" x="92" y="116" width="12" height="6"/>
       <rect class="blush" x="158" y="116" width="12" height="6"/>
@@ -144,9 +170,11 @@
 
   <symbol id="character-curls" viewBox="0 0 260 480">
     <g class="pixel">
-      <g transform="matrix(.88 0 0 .88 15.6 18.24)">
+      <use href="#pixel-hood"/>
+      <g transform="matrix(1.3 0 0 1.18 -39 -16)">
       <path class="hair-dark pixel-outline" d="M78 54H86V38H102V26H118V18H150V26H166V34H182V50H190V66H198V112H190V136H178V152H82V144H70V128H62V78H70V62H78Z"/>
       </g>
+      <g transform="matrix(1 0 0 .62 0 47)">
       <path class="skin pixel-outline" d="M90 268H130L128 304L124 342L124 368L120 412H98L96 372L90 344L88 306Z"/>
       <path class="skin pixel-outline" d="M130 268H170L172 304L168 342L164 370L162 412H140L138 372L134 344L132 306Z"/>
       <path class="skin-shadow pixel" d="M112 352H122V404H116ZM138 352H148V404H142Z"/>
@@ -155,15 +183,13 @@
       <path class="skin pixel-outline" d="M88 184L78 198L72 222L70 240L72 260L76 280L74 290L74 306L82 314L92 312L96 302L94 288L92 266L90 246L92 224L96 204Z"/>
       <path class="skin pixel-outline" d="M172 188L182 202L188 226L190 244L186 262L180 278L184 288L184 304L176 312L166 310L162 300L164 286L168 268L170 248L168 226L166 206Z"/>
       <rect class="skin-shadow" x="122" y="150" width="18" height="12"/>
-      <g transform="matrix(.88 0 0 .88 15.6 18.24)">
+      </g>
+      <g transform="matrix(1.3 0 0 1.18 -39 -16)">
       <path class="skin pixel-outline" d="M88 72H96V56H112V48H154V56H170V72H178V120H170V136H154V152H106V144H90V128H82V80H88Z"/>
       <path class="skin-shadow pixel" d="M90 112H102V132H114V144H104V136H90ZM158 112H170V132H158Z"/>
       <path class="hair-dark pixel" d="M82 68H98V52H114V44H150V52H166V68H178V84H162V76H146V68H130V76H114V84H98V96H82Z"/>
       <path class="hair-highlight pixel" d="M94 42H108V34H126V42H112V50H94ZM158 42H174V58H166V66H154V54H158Z"/>
-      <rect class="ink" x="104" y="92" width="10" height="14"/>
-      <rect class="ink" x="148" y="92" width="10" height="14"/>
-      <rect class="white" x="104" y="92" width="4" height="5"/>
-      <rect class="white" x="148" y="92" width="4" height="5"/>
+      <use href="#pixel-big-eyes"/>
       <path class="ink" d="M120 124H140V132H120Z"/>
       <rect class="blush" x="92" y="116" width="12" height="6"/>
       <rect class="blush" x="158" y="116" width="12" height="6"/>
@@ -174,9 +200,11 @@
 
   <symbol id="character-waves" viewBox="0 0 260 480">
     <g class="pixel">
-      <g transform="matrix(.88 0 0 .88 15.6 18.24)">
-      <path class="hair-warm pixel-outline" d="M74 62H82V46H98V30H154V38H170V46H186V62H194V214H186V238H170V222H154V246H106V222H90V238H74V214H66V78H74Z"/>
+      <use href="#pixel-hood"/>
+      <g transform="matrix(1.3 0 0 1.18 -39 -16)">
+      <path class="hair-warm pixel-outline" d="M74 62H82V46H98V30H154V38H170V46H186V62H194V140H186V156H170V146H154V164H106V146H90V156H74V140H66V78H74Z"/>
       </g>
+      <g transform="matrix(1 0 0 .62 0 47)">
       <path class="skin pixel-outline" d="M90 268H130L128 304L124 342L124 368L120 412H98L96 372L90 344L88 306Z"/>
       <path class="skin pixel-outline" d="M130 268H170L172 304L168 342L164 370L162 412H140L138 372L134 344L132 306Z"/>
       <path class="skin-shadow pixel" d="M112 352H122V404H116ZM138 352H148V404H142Z"/>
@@ -185,13 +213,13 @@
       <path class="skin pixel-outline" d="M88 184L78 198L72 222L70 240L72 260L76 280L74 290L74 306L82 314L92 312L96 302L94 288L92 266L90 246L92 224L96 204Z"/>
       <path class="skin pixel-outline" d="M172 188L182 202L188 226L190 244L186 262L180 278L184 288L184 304L176 312L166 310L162 300L164 286L168 268L170 248L168 226L166 206Z"/>
       <rect class="skin-shadow" x="122" y="150" width="18" height="12"/>
-      <g transform="matrix(.88 0 0 .88 15.6 18.24)">
+      </g>
+      <g transform="matrix(1.3 0 0 1.18 -39 -16)">
       <path class="skin pixel-outline" d="M88 72H96V56H112V48H154V56H170V72H178V120H170V136H154V152H106V144H90V128H82V80H88Z"/>
       <path class="skin-shadow pixel" d="M90 112H102V132H114V144H104V136H90ZM158 112H170V132H158Z"/>
       <path class="hair-warm pixel" d="M86 64H102V48H150V56H166V72H174V88H158V80H146V68H130V80H114V88H98V96H86Z"/>
-      <path class="hair-highlight pixel" d="M106 42H150V50H118V58H102V50H106ZM78 100H90V202H82V214H74V118H78ZM174 96H186V214H178V202H174Z"/>
-      <rect class="ink" x="104" y="92" width="10" height="14"/><rect class="ink" x="148" y="92" width="10" height="14"/>
-      <rect class="white" x="104" y="92" width="4" height="5"/><rect class="white" x="148" y="92" width="4" height="5"/>
+      <path class="hair-highlight pixel" d="M106 42H150V50H118V58H102V50H106ZM78 100H90V154H82V164H74V118H78ZM174 96H186V164H178V154H174Z"/>
+      <use href="#pixel-big-eyes"/>
       <path class="ink" d="M120 124H144V132H136V138H128V132H120Z"/>
       <rect class="blush" x="92" y="116" width="12" height="6"/><rect class="blush" x="158" y="116" width="12" height="6"/>
       <use href="#pixel-face-details"/>
@@ -201,9 +229,11 @@
 
   <symbol id="character-bob" viewBox="0 0 260 480">
     <g class="pixel">
-      <g transform="matrix(.88 0 0 .88 15.6 18.24)">
+      <use href="#pixel-hood"/>
+      <g transform="matrix(1.3 0 0 1.18 -39 -16)">
       <path fill="#3d405c" class="pixel-outline" d="M78 62H86V46H102V30H158V38H174V46H182V62H190V174H178V190H162V206H98V190H82V174H70V78H78Z"/>
       </g>
+      <g transform="matrix(1 0 0 .62 0 47)">
       <path class="skin pixel-outline" d="M90 268H130L128 304L124 342L124 368L120 412H98L96 372L90 344L88 306Z"/>
       <path class="skin pixel-outline" d="M130 268H170L172 304L168 342L164 370L162 412H140L138 372L134 344L132 306Z"/>
       <path class="skin-shadow pixel" d="M112 352H122V404H116ZM138 352H148V404H142Z"/>
@@ -212,13 +242,13 @@
       <path class="skin pixel-outline" d="M88 184L78 198L72 222L70 240L72 260L76 280L74 290L74 306L82 314L92 312L96 302L94 288L92 266L90 246L92 224L96 204Z"/>
       <path class="skin pixel-outline" d="M172 188L182 202L188 226L190 244L186 262L180 278L184 288L184 304L176 312L166 310L162 300L164 286L168 268L170 248L168 226L166 206Z"/>
       <rect class="skin-shadow" x="122" y="150" width="18" height="12"/>
-      <g transform="matrix(.88 0 0 .88 15.6 18.24)">
+      </g>
+      <g transform="matrix(1.3 0 0 1.18 -39 -16)">
       <path class="skin pixel-outline" d="M88 72H96V56H112V48H154V56H170V72H178V120H170V136H154V152H106V144H90V128H82V80H88Z"/>
       <path class="skin-shadow pixel" d="M90 112H102V132H114V144H104V136H90ZM158 112H170V132H158Z"/>
       <path fill="#3d405c" class="pixel" d="M86 64H102V48H154V56H170V72H174V94H162V82H150V70H132V78H118V86H102V98H86ZM78 112H90V170H102V188H86V176H78ZM170 104H182V176H174V188H158V172H170Z"/>
       <path fill="#686b8c" class="pixel" d="M110 42H154V50H122V58H102V50H110Z"/>
-      <rect class="ink" x="104" y="92" width="10" height="14"/><rect class="ink" x="148" y="92" width="10" height="14"/>
-      <rect class="white" x="104" y="92" width="4" height="5"/><rect class="white" x="148" y="92" width="4" height="5"/>
+      <use href="#pixel-big-eyes"/>
       <path class="ink" d="M122 126H140V134H122Z"/>
       <rect class="blush" x="92" y="116" width="12" height="6"/><rect class="blush" x="158" y="116" width="12" height="6"/>
       <use href="#pixel-face-details"/>

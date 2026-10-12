@@ -1,13 +1,15 @@
-import { PIXEL_CHARACTER_SPRITE_PATH } from "../data/assets.js";
+import {
+  getChibiLayerTransform,
+  PIXEL_CHARACTER_SPRITE_PATH,
+} from "../data/assets.js?chibi-2026-10-12-v2";
 
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 const renderVersions = new WeakMap();
 let spritePromise = null;
-let shadeCounter = 0;
 
 function loadSprite() {
   if (!spritePromise) {
-    spritePromise = fetch(PIXEL_CHARACTER_SPRITE_PATH)
+    spritePromise = fetch(new URL(`../${PIXEL_CHARACTER_SPRITE_PATH}`, import.meta.url))
       .then((response) => {
         if (!response.ok) throw new Error(`Pixel sprite request failed: ${response.status}`);
         return response.text();
@@ -21,8 +23,13 @@ function loadSprite() {
   return spritePromise;
 }
 
-function copyExpandedNode(source, sprite, ownerDocument) {
+function copyExpandedNode(source, sprite, ownerDocument, simplifyCharacter = false) {
   if (source.nodeType !== 1) return ownerDocument.importNode(source, false);
+  if (simplifyCharacter && source.classList.contains("sheen")) return null;
+  if (!simplifyCharacter && (
+    source.classList.contains("pixel-detail")
+    || source.classList.contains("ink")
+  )) return null;
 
   if (source.localName === "use") {
     const referenceId = source.getAttribute("href")?.replace(/^#/, "");
@@ -33,14 +40,16 @@ function copyExpandedNode(source, sprite, ownerDocument) {
       if (attribute.name !== "href") group.setAttribute(attribute.name, attribute.value);
     }
     for (const child of reference.childNodes) {
-      group.append(copyExpandedNode(child, sprite, ownerDocument));
+      const expanded = copyExpandedNode(child, sprite, ownerDocument, simplifyCharacter);
+      if (expanded) group.append(expanded);
     }
     return group;
   }
 
   const clone = ownerDocument.importNode(source, false);
   for (const child of source.childNodes) {
-    clone.append(copyExpandedNode(child, sprite, ownerDocument));
+    const expanded = copyExpandedNode(child, sprite, ownerDocument, simplifyCharacter);
+    if (expanded) clone.append(expanded);
   }
   return clone;
 }
@@ -71,22 +80,17 @@ export async function renderPixelArt(svg, layers, { tone, palette, ariaLabel } =
     style.textContent = sprite.querySelector("style")?.textContent ?? "";
     svg.append(style);
 
-    // Each svg gets its own copy of the shared bevel filter so element ids stay unique.
-    const shadeId = `pixel-shade-${++shadeCounter}`;
-    const shade = svg.ownerDocument.importNode(sprite.getElementById("pixel-shade"), true);
-    shade.setAttribute("id", shadeId);
-    const defs = svg.ownerDocument.createElementNS(SVG_NAMESPACE, "defs");
-    defs.append(shade);
-    svg.append(defs);
-
     for (const layerId of layers) {
       const symbol = sprite.getElementById(layerId);
       if (!symbol) throw new Error(`Missing pixel layer: ${layerId}`);
+      const isCharacterLayer = layerId.startsWith("character-");
       const group = svg.ownerDocument.createElementNS(SVG_NAMESPACE, "g");
       group.dataset.pixelLayer = layerId;
-      group.setAttribute("filter", `url(#${shadeId})`);
+      const transform = getChibiLayerTransform(layerId);
+      if (transform) group.setAttribute("transform", transform);
       for (const child of symbol.childNodes) {
-        group.append(copyExpandedNode(child, sprite, svg.ownerDocument));
+        const expanded = copyExpandedNode(child, sprite, svg.ownerDocument, isCharacterLayer);
+        if (expanded) group.append(expanded);
       }
       svg.append(group);
     }

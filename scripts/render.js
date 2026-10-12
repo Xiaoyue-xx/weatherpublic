@@ -1,4 +1,4 @@
-import { getAssetHref } from "../data/assets.js";
+import { getAssetHref } from "../data/assets.js?chibi-2026-10-12-v2";
 import { SKIN_TONES, getCharacterLabel } from "../data/content.js";
 import { renderPixelArt } from "./pixel-art.js";
 import { deriveRecommendationCore } from "./recommendation.js";

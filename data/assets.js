@@ -40,7 +40,7 @@ export const ASSET_INVENTORY = Object.freeze({
   modifiers: Object.freeze([
     "modifier-rain-shell", "modifier-wind-layer", "modifier-insulated-layer",
     "modifier-puffer", "modifier-cap", "modifier-knit-hat", "modifier-gloves",
-    "modifier-waterproof-boots",
+    "modifier-waterproof-boots", "base-tunic",
   ]),
   weather: Object.freeze([
     "weather-clear", "weather-clear-night", "weather-partly-cloudy", "weather-cloudy",
@@ -77,6 +77,29 @@ export function getAssetHref(symbolId, prefix = "") {
     ? PIXEL_CHARACTER_SPRITE_PATH
     : SVG_SPRITE_PATH;
   return `${prefix}${path}#${symbolId}`;
+}
+
+export function getChibiLayerTransform(symbolId) {
+  if (symbolId.startsWith("upper-")) return "matrix(1 0 0 .52 0 78)";
+  if (symbolId.startsWith("lower-")) return "matrix(1 0 0 .62 0 47)";
+  if (symbolId.startsWith("footwear-") || symbolId === "modifier-waterproof-boots") {
+    return "matrix(1 0 0 .62 0 47)";
+  }
+  if (symbolId === "modifier-cap" || symbolId === "modifier-knit-hat") {
+    return "matrix(1.3 0 0 1.18 -39 -16)";
+  }
+  if (symbolId === "modifier-gloves" || symbolId === "base-tunic") {
+    return "matrix(1 0 0 .62 0 47)";
+  }
+  if ([
+    "modifier-rain-shell",
+    "modifier-wind-layer",
+    "modifier-insulated-layer",
+    "modifier-puffer",
+  ].includes(symbolId)) {
+    return "matrix(1 0 0 .52 0 78)";
+  }
+  return null;
 }
 
 const UPPER_RULES = [
@@ -155,6 +178,7 @@ export function resolveRecipeLayers(items, character) {
   return Object.freeze([
     `character-${character}`,
     matchLayer(items[1], LOWER_RULES, "lower-body"),
+    "base-tunic",
     matchLayer(items[0], UPPER_RULES, "upper-body"),
     matchLayer(items[2], FOOTWEAR_RULES, "footwear"),
   ]);
@@ -194,7 +218,7 @@ export function composeOutfitLayerIds(assembledOutfit, modifiers = {}) {
     throw new TypeError("An assembled outfit is required");
   }
 
-  const [character, lowerBody, upperBody, baseFootwear] = assembledOutfit.layerIds;
+  const [character, lowerBody, baseTunic, upperBody, baseFootwear] = assembledOutfit.layerIds;
   const protection = [];
   if (modifiers.rain) {
     protection.push(PROTECTION_LAYER_IDS.rain);
@@ -202,5 +226,5 @@ export function composeOutfitLayerIds(assembledOutfit, modifiers = {}) {
     protection.push(PROTECTION_LAYER_IDS.wind);
   }
   const footwear = modifiers.snow ? PROTECTION_LAYER_IDS.snowFootwear : baseFootwear;
-  return Object.freeze([character, lowerBody, upperBody, ...protection, footwear]);
+  return Object.freeze([character, lowerBody, baseTunic, upperBody, ...protection, footwear]);
 }

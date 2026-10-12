@@ -1,4 +1,4 @@
-import { getAssetHref } from "../data/assets.js";
+import { getAssetHref } from "../data/assets.js?chibi-2026-10-12-v2";
 import { CHARACTER_OPTIONS, SKIN_TONES } from "../data/content.js";
 import { requestDeviceLocation } from "./device-location.js";
 import { renderPixelArt } from "./pixel-art.js";
@@ -30,17 +30,17 @@ function appendIcon(container, iconId) {
 const STYLE_PREVIEWS = Object.freeze({
   "campus-casual": Object.freeze({
     label: "Campus Casual",
-    layers: Object.freeze(["lower-wide-leg", "upper-cardigan", "footwear-canvas"]),
+    layers: Object.freeze(["lower-wide-leg", "base-tunic", "upper-cardigan", "footwear-canvas"]),
     palette: Object.freeze(["#b56b9b", "#9bc7df", "#3f425f", "#fff7e8"]),
   }),
   sporty: Object.freeze({
     label: "Sporty",
-    layers: Object.freeze(["lower-joggers", "upper-track-jacket", "footwear-trainers"]),
+    layers: Object.freeze(["lower-joggers", "base-tunic", "upper-track-jacket", "footwear-trainers"]),
     palette: Object.freeze(["#407d78", "#f1c75b", "#293d4a", "#f8f4e8"]),
   }),
   streetwear: Object.freeze({
     label: "Streetwear",
-    layers: Object.freeze(["lower-parachute", "upper-bomber", "footwear-high-tops"]),
+    layers: Object.freeze(["lower-parachute", "base-tunic", "upper-bomber", "footwear-high-tops"]),
     palette: Object.freeze(["#6b5bd2", "#e68f6d", "#302d49", "#f4eadb"]),
   }),
 });
@@ -94,6 +94,7 @@ export function createInteractionController({
       renderPixelArt(thumbnail, [
         `character-${thumbnail.dataset.characterThumbnail}`,
         "lower-jeans",
+        "base-tunic",
         "upper-tee",
         "footwear-canvas",
       ], { tone, palette: STYLE_PREVIEWS["campus-casual"].palette });
