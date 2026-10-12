@@ -1,6 +1,6 @@
-import { getAssetHref } from "../data/assets.js?chibi-2026-10-12-v3";
+import { getAssetHref } from "../data/assets.js?chibi-2026-10-12-v4";
 import { SKIN_TONES, getCharacterLabel } from "../data/content.js";
-import { renderPixelArt } from "./pixel-art.js?chibi-2026-10-12-v3";
+import { renderPixelArt } from "./pixel-art.js?chibi-2026-10-12-v4";
 import { deriveRecommendationCore } from "./recommendation.js";
 
 const DATE_LONG = new Intl.DateTimeFormat("en-US", {

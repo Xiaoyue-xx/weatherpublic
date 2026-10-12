@@ -2,7 +2,7 @@ import {
   COLOR_PALETTES,
   composeOutfitLayerIds,
   getAssembledOutfit,
-} from "../data/assets.js?chibi-2026-10-12-v3";
+} from "../data/assets.js?chibi-2026-10-12-v4";
 import { CHARACTER_PRESENTATIONS, OUTFIT_STYLES, SKIN_TONES } from "../data/content.js";
 import { deriveRecommendationCore } from "./recommendation.js";
 import {

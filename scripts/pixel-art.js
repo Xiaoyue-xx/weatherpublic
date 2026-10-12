@@ -1,7 +1,7 @@
 import {
   getChibiLayerTransform,
   PIXEL_CHARACTER_SPRITE_PATH,
-} from "../data/assets.js?chibi-2026-10-12-v3";
+} from "../data/assets.js?chibi-2026-10-12-v4";
 
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 const renderVersions = new WeakMap();
@@ -9,7 +9,10 @@ let spritePromise = null;
 
 function loadSprite() {
   if (!spritePromise) {
-    spritePromise = fetch(new URL(`../${PIXEL_CHARACTER_SPRITE_PATH}`, import.meta.url))
+    spritePromise = fetch(new URL(
+      `../${PIXEL_CHARACTER_SPRITE_PATH}?chibi-2026-10-12-v4`,
+      import.meta.url,
+    ))
       .then((response) => {
         if (!response.ok) throw new Error(`Pixel sprite request failed: ${response.status}`);
         return response.text();
