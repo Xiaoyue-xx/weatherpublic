@@ -1,7 +1,7 @@
-import { getAssetHref } from "../data/assets.js?chibi-2026-10-12-v2";
+import { getAssetHref } from "../data/assets.js?chibi-2026-10-12-v3";
 import { CHARACTER_OPTIONS, SKIN_TONES } from "../data/content.js";
 import { requestDeviceLocation } from "./device-location.js";
-import { renderPixelArt } from "./pixel-art.js";
+import { renderPixelArt } from "./pixel-art.js?chibi-2026-10-12-v3";
 import { searchUsLocations } from "./weather-service.js";
 
 function setStatus(root, message) {

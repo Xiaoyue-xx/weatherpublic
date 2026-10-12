@@ -1,7 +1,7 @@
 import {
   getChibiLayerTransform,
   PIXEL_CHARACTER_SPRITE_PATH,
-} from "../data/assets.js?chibi-2026-10-12-v2";
+} from "../data/assets.js?chibi-2026-10-12-v3";
 
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 const renderVersions = new WeakMap();

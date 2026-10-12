@@ -1,6 +1,6 @@
-import { renderApp } from "./render.js";
-import { createAppStore } from "./state.js";
-import { createInteractionController } from "./interactions.js";
+import { renderApp } from "./render.js?chibi-2026-10-12-v3";
+import { createAppStore } from "./state.js?chibi-2026-10-12-v3";
+import { createInteractionController } from "./interactions.js?chibi-2026-10-12-v3";
 
 const store = createAppStore();
 const shell = document.querySelector("[data-app-shell]");
