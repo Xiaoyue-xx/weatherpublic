@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#fff8ef">
+    <meta name="description" content="Weather-based outfit and carry-item recommendations for college students.">
+    <title>What to Wear?</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <script type="module" src="scripts/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+      <a class="wordmark" href="./" aria-label="What to Wear? home">
+        <span class="wordmark-sparkle" aria-hidden="true">✦</span>
+        <span>What to Wear?</span>
+        <svg class="wordmark-weather" aria-hidden="true" viewBox="0 0 96 96"><use href="assets/art.svg#weather-partly-cloudy"></use></svg>
+      </a>
+      <button class="location-control" type="button" data-open-location>
+        <svg aria-hidden="true" viewBox="0 0 96 96"><use href="assets/art.svg#status-location"></use></svg>
+        <span data-location-label>Choose location</span><span aria-hidden="true">⌄</span>
+      </button>
+      <nav class="view-switch" aria-label="Forecast view">
+        <button type="button" data-view-button="today" aria-pressed="true">Today</button>
+        <button type="button" data-view-button="forecast" aria-pressed="false">7-Day</button>
+      </nav>
+      <fieldset class="unit-switch" aria-label="Temperature units">
+        <legend class="visually-hidden">Temperature units</legend>
+        <button type="button" data-unit="fahrenheit" aria-pressed="true">°F</button>
+        <button type="button" data-unit="celsius" aria-pressed="false">°C</button>
+      </fieldset>
+      <button class="information-button" type="button" data-open-information aria-label="Information">
+        <svg aria-hidden="true" viewBox="0 0 96 96"><use href="assets/art.svg#status-information"></use></svg>
+        <span>Information</span>
+      </button>
+    </header>
+
+    <main id="main-content" class="app-shell" data-app-shell data-view="today">
+      <p class="visually-hidden" data-app-status role="status" aria-live="polite"></p>
+      <div data-main-screen>
+      <section class="empty-state" data-empty-state aria-labelledby="empty-title">
+        <div class="empty-art" aria-hidden="true">
+          <svg data-empty-icon viewBox="0 0 96 96"><use href="assets/art.svg#weather-partly-cloudy"></use></svg><span>✦</span>
+        </div>
+        <p class="eyebrow" data-empty-eyebrow>Weather outfits for your day</p>
+        <h1 id="empty-title" data-empty-title>Ready for the forecast?</h1>
+        <p data-empty-message>Choose a US city to see a seven-day forecast, a complete outfit, and what to bring.</p>
+        <div class="loading-skeleton" data-loading-skeleton hidden aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="empty-actions">
+          <button class="primary-action" type="button" data-retry-weather hidden>Retry weather</button>
+          <button type="button" data-open-location>Choose a location</button>
+        </div>
+      </section>
+
+      <section class="weather-experience" data-weather-experience hidden aria-label="Weather outfit recommendation">
+        <div class="date-strip-wrap"><div class="date-strip" data-date-strip aria-label="Choose a forecast date"></div></div>
+        <div class="desktop-grid">
+          <section class="weather-character card" aria-labelledby="weather-heading">
+            <div class="card-heading-row">
+              <div><p class="eyebrow" data-context-label>Current weather</p><h1 id="weather-heading" data-selected-date>Today</h1></div>
+              <span class="source-badge" data-source-badge>Open-Meteo</span>
+            </div>
+            <div class="weather-summary">
+              <svg class="weather-icon" data-weather-icon aria-hidden="true" viewBox="0 0 96 96"></svg>
+              <div><p class="temperature" data-primary-temperature>—</p><p class="condition" data-condition>Conditions unavailable</p><p class="feels-like" data-feels-like></p></div>
+            </div>
+            <dl class="weather-facts" data-weather-facts></dl>
+            <figure class="character-stage">
+              <span class="stage-sticker" aria-hidden="true">Today’s look! ♡</span>
+              <svg class="character-art" data-character-art viewBox="0 0 260 480" role="img" aria-label="Weather-ready outfit"></svg>
+              <svg class="stage-skyline" aria-hidden="true" viewBox="0 0 320 120"><use href="assets/art.svg#decor-skyline"></use></svg>
+            </figure>
+          </section>
+
+          <div class="recommendation-column">
+            <section class="outfit-card card" aria-labelledby="outfit-heading">
+              <div class="card-heading-row">
+                <div><p class="eyebrow">Weather-ready layers</p><h2 id="outfit-heading">Outfit suggestion</h2></div>
+                <div class="card-actions">
+                  <button class="text-button" type="button" data-open-preferences>Style</button>
+                  <button class="text-button" type="button" data-open-outfit>Details</button>
+                </div>
+              </div>
+              <p class="recommendation-copy" data-recommendation-text></p>
+              <ul class="outfit-items" data-outfit-items></ul>
+            </section>
+            <section class="carry-card card" aria-labelledby="carry-heading">
+              <div class="card-heading-row">
+                <div><p class="eyebrow">Plan your walk</p><h2 id="carry-heading">Bring with you</h2></div>
+                <button class="text-button" type="button" data-open-carry>Details</button>
+              </div>
+              <div class="reminder-grid" data-reminders></div>
+            </section>
+            <p class="recommendation-note">Suggestions are practical guidance, not safety or medical advice.</p>
+          </div>
+
+          <section class="forecast-card card" id="forecast" aria-labelledby="forecast-heading">
+            <div class="card-heading-row"><div><p class="eyebrow">Selected location</p><h2 id="forecast-heading">7-day forecast</h2></div></div>
+            <div class="forecast-list" data-forecast-list></div>
+          </section>
+        </div>
+        <footer class="data-footer"><span data-data-context></span><span data-fetched-time></span></footer>
+      </section>
+      </div>
+
+      <section class="information-screen" data-information-screen hidden aria-labelledby="information-title">
+        <header class="information-hero">
+          <button class="back-button" type="button" data-back-main>← Back to weather</button>
+          <p class="eyebrow">Information and settings</p>
+          <h1 id="information-title" tabindex="-1">How your forecast becomes an outfit.</h1>
+          <p>Review your preferences, data sources, privacy choices, and the reasoning behind each recommendation.</p>
+        </header>
+
+        <div class="information-grid">
+          <section class="info-card settings-card" aria-labelledby="settings-title">
+            <p class="eyebrow">Personal settings</p>
+            <h2 id="settings-title">Settings</h2>
+            <div class="settings-row">
+              <div><strong>Units</strong><span>Changes display values without changing the outfit rules.</span></div>
+              <fieldset class="unit-switch" aria-label="Information screen temperature units">
+                <legend class="visually-hidden">Temperature units</legend>
+                <button type="button" data-unit="fahrenheit" aria-pressed="true">°F</button>
+                <button type="button" data-unit="celsius" aria-pressed="false">°C</button>
+              </fieldset>
+            </div>
+            <div class="settings-row">
+              <div><strong>Character and style</strong><span data-preference-summary>Long waves · Medium · Campus Casual</span></div>
+              <button type="button" data-open-preferences>Change</button>
+            </div>
+          </section>
+
+          <section class="info-card" aria-labelledby="method-title">
+            <p class="eyebrow">Recommendation method</p>
+            <h2 id="method-title">Coded, consistent guidance</h2>
+            <p>The app uses the typical apparent temperature from 8:00 a.m. to 6:00 p.m. to choose a base outfit, then applies separate rain, snow, wind, UV, heat, temperature-swing, and thunderstorm rules.</p>
+            <p>Suggestions are practical guidance for planning a day outside. They are not medical advice, emergency alerts, or a guarantee of comfort.</p>
+          </section>
+
+          <section class="info-card" aria-labelledby="sources-title">
+            <p class="eyebrow">Data and guidance</p>
+            <h2 id="sources-title">Sources</h2>
+            <ul class="source-list">
+              <li><a href="https://open-meteo.com/en/docs">Open-Meteo Forecast API</a> provides weather and geocoding data under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</li>
+              <li><a href="https://www.weather.gov/safety/cold-during">National Weather Service cold-weather guidance</a> informs layering and weather-resistant clothing.</li>
+              <li><a href="https://www.cdc.gov/climate-health/php/resources/protect-yourself-from-the-dangers-of-extreme-heat.html">CDC extreme-heat guidance</a> informs lightweight clothing and hydration reminders.</li>
+              <li><a href="https://www.epa.gov/sunsafety/uv-index-scale-0">EPA UV Index guidance</a> informs sun-protection reminders.</li>
+            </ul>
+          </section>
+
+          <section class="info-card" aria-labelledby="privacy-title">
+            <p class="eyebrow">Privacy</p>
+            <h2 id="privacy-title">Your latest location stays on this device</h2>
+            <p>The app sends a searched city or device coordinates to Open-Meteo only to retrieve weather. Device location is requested only after you choose “Use my current location.”</p>
+            <p>Local storage contains one latest location with coordinates rounded to three decimal places, plus units, character, skin tone, and style. There is no account, analytics identifier, favorites list, location history, or stored weather history.</p>
+          </section>
+
+          <section class="info-card" aria-labelledby="accessibility-title">
+            <p class="eyebrow">Accessibility</p>
+            <h2 id="accessibility-title">Designed for flexible access</h2>
+            <p>The interface supports keyboard navigation, visible focus, screen-reader status announcements, text alternatives for meaningful artwork, large touch targets, reduced motion, and responsive text and layouts.</p>
+          </section>
+
+          <section class="info-card creator-card" aria-labelledby="creator-title">
+            <p class="eyebrow">Credits</p>
+            <h2 id="creator-title">Created by xiaoyuex_x</h2>
+            <p>Designed and developed by xiaoyuex_x with AI assistance. Product decisions and final review remain with the creator.</p>
+            <p>All character, clothing, weather, reminder, status, and decorative SVG artwork was created as original artwork for this prototype.</p>
+            <p>Headings use the Silkscreen pixel typeface by Jason Kottke, licensed under the SIL Open Font License 1.1 and served from this site.</p>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <template id="date-button-template">
+      <button class="date-button" type="button"><span class="date-weekday"></span><span class="date-calendar"></span></button>
+    </template>
+    <template id="forecast-row-template">
+      <button class="forecast-row" type="button">
+        <span class="forecast-date"><strong></strong><small></small></span>
+        <svg class="forecast-icon" aria-hidden="true" viewBox="0 0 96 96"></svg>
+        <span class="forecast-condition"></span><span class="forecast-temperatures"></span>
+      </button>
+    </template>
+
+    <dialog class="app-dialog location-dialog" data-dialog="location" aria-labelledby="location-dialog-title">
+      <div class="dialog-heading">
+        <div><p class="eyebrow">Weather location</p><h2 id="location-dialog-title">Choose a US location</h2></div>
+        <button class="close-button" type="button" data-close-dialog aria-label="Close location panel">×</button>
+      </div>
+      <form class="location-search" data-location-form role="search">
+        <label for="location-query">City or region</label>
+        <div class="search-row">
+          <input id="location-query" name="query" type="search" minlength="2" autocomplete="address-level2" placeholder="Try Boston or Austin" required>
+          <button type="submit">Search</button>
+        </div>
+      </form>
+      <p class="panel-status" data-location-status role="status" aria-live="polite">Search for a city or use your device location.</p>
+      <div class="location-results" data-location-results aria-label="Location search results"></div>
+      <div class="panel-divider"><span>or</span></div>
+      <button class="device-location-button" type="button" data-use-device-location>
+        <svg aria-hidden="true" viewBox="0 0 96 96"><use href="assets/art.svg#status-location"></use></svg>
+        Use my current location
+      </button>
+      <p class="privacy-note">Your browser asks permission only after you choose this option. The app saves only your latest selected location.</p>
+    </dialog>
+
+    <dialog class="app-dialog preferences-dialog" data-dialog="preferences" aria-labelledby="preferences-dialog-title">
+      <form data-preferences-form>
+        <div class="dialog-heading">
+          <div><p class="eyebrow">Make it yours</p><h2 id="preferences-dialog-title">Character and style</h2></div>
+          <button class="close-button" type="button" data-close-dialog aria-label="Close preferences panel">×</button>
+        </div>
+        <div class="preference-editor">
+          <figure class="preference-preview-stage">
+            <span class="preview-badge">Live preview</span>
+            <svg data-preference-preview viewBox="0 0 260 480" role="img" aria-label="Long waves character in a campus casual outfit"></svg>
+            <figcaption data-preference-preview-label>Long waves · Medium · Campus Casual</figcaption>
+          </figure>
+          <div class="preference-controls">
+            <fieldset class="choice-fieldset character-choices">
+              <legend>Choose a character</legend>
+              <label class="visual-choice"><input type="radio" name="character" value="crop"><svg data-character-thumbnail="crop" aria-hidden="true" viewBox="0 0 260 480"></svg><span>Cropped</span></label>
+              <label class="visual-choice"><input type="radio" name="character" value="curls"><svg data-character-thumbnail="curls" aria-hidden="true" viewBox="0 0 260 480"></svg><span>Curls</span></label>
+              <label class="visual-choice"><input type="radio" name="character" value="waves"><svg data-character-thumbnail="waves" aria-hidden="true" viewBox="0 0 260 480"></svg><span>Long waves</span></label>
+              <label class="visual-choice"><input type="radio" name="character" value="bob"><svg data-character-thumbnail="bob" aria-hidden="true" viewBox="0 0 260 480"></svg><span>Soft bob</span></label>
+            </fieldset>
+            <fieldset class="choice-fieldset skin-tone-choices">
+              <legend>Skin tone</legend>
+              <label><input type="radio" name="skinTone" value="deep"><span class="tone-deep"><span class="visually-hidden">Deep</span></span></label>
+              <label><input type="radio" name="skinTone" value="dark"><span class="tone-dark"><span class="visually-hidden">Dark</span></span></label>
+              <label><input type="radio" name="skinTone" value="medium"><span class="tone-medium"><span class="visually-hidden">Medium</span></span></label>
+              <label><input type="radio" name="skinTone" value="tan"><span class="tone-tan"><span class="visually-hidden">Tan</span></span></label>
+              <label><input type="radio" name="skinTone" value="light"><span class="tone-light"><span class="visually-hidden">Light</span></span></label>
+            </fieldset>
+            <fieldset class="choice-fieldset style-choices">
+              <legend>Outfit style</legend>
+              <label><input type="radio" name="style" value="campus-casual"><span><strong>Campus</strong><small>Soft layers</small></span></label>
+              <label><input type="radio" name="style" value="sporty"><span><strong>Sporty</strong><small>Active set</small></span></label>
+              <label><input type="radio" name="style" value="streetwear"><span><strong>Street</strong><small>Bold shapes</small></span></label>
+            </fieldset>
+          </div>
+        </div>
+        <button class="primary-action" type="submit">Apply preferences</button>
+      </form>
+    </dialog>
+
+    <dialog class="app-dialog details-dialog" data-dialog="outfit" aria-labelledby="outfit-dialog-title">
+      <div class="dialog-heading">
+        <div><p class="eyebrow">Selected recommendation</p><h2 id="outfit-dialog-title">Outfit details</h2></div>
+        <button class="close-button" type="button" data-close-dialog aria-label="Close outfit details">×</button>
+      </div>
+      <p class="detail-summary" data-outfit-summary></p>
+      <ul class="detail-list" data-outfit-detail-list></ul>
+    </dialog>
+
+    <dialog class="app-dialog details-dialog" data-dialog="carry" aria-labelledby="carry-dialog-title">
+      <div class="dialog-heading">
+        <div><p class="eyebrow">Forecast preparation</p><h2 id="carry-dialog-title">Carry-item details</h2></div>
+        <button class="close-button" type="button" data-close-dialog aria-label="Close carry-item details">×</button>
+      </div>
+      <div class="detail-reminders" data-carry-detail-list></div>
+    </dialog>
+  </body>
+</html>

@@ -1,0 +1,289 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .pixel { shape-rendering: crispEdges; }
+    .pixel-outline { stroke: #241c35; stroke-width: 8; stroke-linecap: butt; stroke-linejoin: miter; shape-rendering: crispEdges; }
+    .pixel-detail { fill: none; stroke: #241c35; stroke-width: 6; stroke-linecap: butt; stroke-linejoin: miter; shape-rendering: crispEdges; }
+    .skin { fill: var(--skin-tone, #c98262); }
+    .skin-shadow { fill: var(--skin-shadow, #a85f49); }
+    .blush { fill: var(--skin-blush, #df8c82); }
+    .hair-dark { fill: #30243b; }
+    .hair-warm { fill: #70422f; }
+    .hair-highlight { fill: #a86742; }
+    .garment { fill: var(--garment-primary, #ff86c8); }
+    .garment-alt { fill: var(--garment-secondary, #9fe4ff); }
+    .garment-dark { fill: var(--garment-dark, #47516b); }
+    .shoe { fill: var(--shoe-color, #fff4dc); }
+    .cream { fill: #fff4dc; }
+    .white { fill: #fffdf9; }
+    .ink { fill: #241c35; }
+    .brow { fill: #3a2a40; }
+    .lip { fill: #d9607a; }
+    .sparkle { fill: #ffe45e; }
+    .sparkle-hot { fill: #ff82bd; }
+    .sheen { fill: #ffffff; fill-opacity: 0.55; }
+  </style>
+
+
+  <filter id="pixel-shade" filterUnits="userSpaceOnUse" x="0" y="0" width="260" height="480" color-interpolation-filters="sRGB">
+    <feOffset in="SourceAlpha" dx="-16" dy="-16" result="shadow-shift"/>
+    <feComposite in="SourceAlpha" in2="shadow-shift" operator="out" result="shadow-band"/>
+    <feFlood flood-color="#241c35" flood-opacity="0.3"/>
+    <feComposite in2="shadow-band" operator="in" result="shadow"/>
+    <feOffset in="SourceAlpha" dx="8" dy="8" result="light-near"/>
+    <feOffset in="SourceAlpha" dx="16" dy="16" result="light-far"/>
+    <feComposite in="light-near" in2="light-far" operator="out" result="light-band"/>
+    <feComposite in="light-band" in2="SourceAlpha" operator="in" result="light-clip"/>
+    <feFlood flood-color="#ffffff" flood-opacity="0.34"/>
+    <feComposite in2="light-clip" operator="in" result="light"/>
+    <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="shadow"/><feMergeNode in="light"/></feMerge>
+  </filter>
+
+  <defs>
+    <g id="pixel-face-details">
+      <rect class="brow" x="102" y="80" width="16" height="4"/>
+      <rect class="brow" x="144" y="80" width="16" height="4"/>
+      <rect class="white" x="110" y="100" width="4" height="4"/>
+      <rect class="white" x="154" y="100" width="4" height="4"/>
+      <rect class="skin-shadow" x="126" y="108" width="8" height="8"/>
+      <rect class="lip" x="122" y="126" width="16" height="4"/>
+      <path class="skin-shadow" d="M106 146H154V154H106Z"/>
+      <path class="sparkle pixel-outline" d="M165 52H171V60H179V66H171V74H165V66H157V60H165Z"/>
+      <rect class="sheen" x="166" y="56" width="4" height="4"/>
+    </g>
+  </defs>
+
+  <defs>
+    <g id="pixel-sleeves-short">
+      <path class="garment pixel-outline" d="M96 174L82 186L72 210L90 222L96 200Z"/>
+      <path class="garment pixel-outline" d="M164 174L178 188L190 212L170 224L166 202Z"/>
+    </g>
+    <g id="pixel-sleeves-long">
+      <path class="garment pixel-outline" d="M96 174L82 186L74 202L68 226L66 244L68 262L72 286H92L90 264L88 246L92 226L96 204Z"/>
+      <path class="garment pixel-outline" d="M164 174L178 188L186 204L192 228L194 246L190 266L184 286H164L168 268L172 248L170 226L166 206Z"/>
+      <path class="pixel-detail" d="M70 278H92M166 278H188"/>
+    </g>
+    <g id="pixel-upper-short">
+      <use href="#pixel-sleeves-short"/>
+      <path class="garment pixel-outline" d="M116 164H144L162 172L176 186L174 206L168 226L164 244L172 262L176 276H84L88 262L94 244L92 226L88 206L84 186L98 172Z"/>
+      <path class="pixel-detail" d="M118 164L130 178L142 164"/>
+    </g>
+    <g id="pixel-upper-long">
+      <use href="#pixel-sleeves-long"/>
+      <path class="garment pixel-outline" d="M116 164H144L162 172L176 186L174 206L168 226L164 244L172 262L176 276H84L88 262L94 244L92 226L88 206L84 186L98 172Z"/>
+      <path class="pixel-detail" d="M118 164L130 178L142 164M92 264H168"/>
+    </g>
+    <g id="pixel-upper-heavy">
+      <use href="#pixel-sleeves-long"/>
+      <path class="garment pixel-outline" d="M112 162H148L166 170L180 184L182 206L176 228L172 246L180 266L184 284H76L80 266L88 246L84 228L78 206L80 184L94 170Z"/>
+      <path class="pixel-detail" d="M114 162L130 178L146 162M80 270H180"/>
+    </g>
+    <g id="pixel-upper-coat">
+      <use href="#pixel-sleeves-long"/>
+      <path class="garment pixel-outline" d="M112 162H148L166 170L180 184L182 206L178 228L180 262L188 300L186 352H74L72 300L80 262L82 228L78 206L80 184L94 170Z"/>
+      <path class="pixel-detail" d="M114 162L130 190L146 162M130 190V346M96 268H116M144 268H164"/>
+    </g>
+    <g id="pixel-lower-shorts">
+      <path class="garment-alt pixel-outline" d="M86 266H174L176 282L172 332H136L130 298L124 332H88L84 282Z"/>
+      <path class="pixel-detail" d="M86 282H174M130 282V298"/>
+    </g>
+    <g id="pixel-lower-slim">
+      <path class="garment-dark pixel-outline" d="M86 266H174L176 282L174 308L170 346L168 374L164 410H140L138 376L134 348L130 306L126 348L122 376L120 410H96L92 378L88 348L84 308L84 282Z"/>
+      <path class="pixel-detail" d="M86 282H174M130 282V306"/>
+    </g>
+    <g id="pixel-lower-relaxed">
+      <path class="garment-alt pixel-outline" d="M82 266H178L182 284L184 330L184 380L182 410H138L136 378L132 330L130 308L128 330L124 378L122 410H78L76 380L76 330L78 284Z"/>
+      <path class="pixel-detail" d="M80 284H180M130 284V308"/>
+    </g>
+    <g id="pixel-shoe-low">
+      <path class="shoe pixel-outline" d="M92 404H120V418H130V438H76V430H72V424H80V416H92Z"/>
+      <path class="shoe pixel-outline" d="M140 404H166V416H176V424H184V432H180V438H134V420H140Z"/>
+      <path class="pixel-detail" d="M94 410H118M142 410H164M74 433H128M136 433H180"/>
+    </g>
+    <g id="pixel-shoe-high">
+      <path class="garment-dark pixel-outline" d="M90 376H122V418H130V438H76V430H72V424H80V416H90Z"/>
+      <path class="garment-dark pixel-outline" d="M138 376H168V416H176V424H184V432H180V438H134V420H138Z"/>
+      <path class="cream pixel" d="M78 432H128V438H78ZM136 432H180V438H136Z"/>
+      <path class="pixel-detail" d="M96 388H118M144 388H164"/>
+    </g>
+    <g id="pixel-shoe-boot">
+      <path class="garment-dark pixel-outline" d="M90 354H124V418H130V438H76V430H72V424H80V416H90Z"/>
+      <path class="garment-dark pixel-outline" d="M138 354H170V416H176V424H184V432H180V438H134V420H138Z"/>
+      <path class="pixel-detail" d="M90 380H124M138 380H170M74 434H128M136 434H180"/>
+    </g>
+  </defs>
+
+  <symbol id="character-crop" viewBox="0 0 260 480">
+    <g class="pixel">
+      <g transform="matrix(.88 0 0 .88 15.6 18.24)">
+      <path class="hair-dark pixel-outline" d="M82 62H90V46H106V30H154V38H170V46H178V62H186V118H174V142H86V126H74V78H82Z"/>
+      </g>
+      <path class="skin pixel-outline" d="M90 268H130L128 304L124 342L124 368L120 412H98L96 372L90 344L88 306Z"/>
+      <path class="skin pixel-outline" d="M130 268H170L172 304L168 342L164 370L162 412H140L138 372L134 344L132 306Z"/>
+      <path class="skin-shadow pixel" d="M112 352H122V404H116ZM138 352H148V404H142Z"/>
+      <path class="skin pixel-outline" d="M120 140H140V168H152V180H108V168H120Z"/>
+      <path class="skin pixel-outline" d="M118 168H142L160 176L172 190L170 206L164 224L160 242L168 262L172 278H88L90 262L98 242L96 224L90 206L88 186L102 176Z"/>
+      <path class="skin pixel-outline" d="M88 184L78 198L72 222L70 240L72 260L76 280L74 290L74 306L82 314L92 312L96 302L94 288L92 266L90 246L92 224L96 204Z"/>
+      <path class="skin pixel-outline" d="M172 188L182 202L188 226L190 244L186 262L180 278L184 288L184 304L176 312L166 310L162 300L164 286L168 268L170 248L168 226L166 206Z"/>
+      <rect class="skin-shadow" x="122" y="150" width="18" height="12"/>
+      <g transform="matrix(.88 0 0 .88 15.6 18.24)">
+      <path class="skin pixel-outline" d="M88 72H96V56H112V48H154V56H170V72H178V120H170V136H154V152H106V144H90V128H82V80H88Z"/>
+      <path class="skin-shadow pixel" d="M90 112H102V132H114V144H104V136H90ZM158 112H170V132H158Z"/>
+      <path class="hair-dark pixel" d="M86 64H102V48H154V56H170V72H174V84H154V76H142V68H126V80H110V88H98V96H86Z"/>
+      <path class="hair-highlight pixel" d="M108 42H150V50H118V58H100V50H108Z"/>
+      <rect class="ink" x="104" y="92" width="10" height="14"/>
+      <rect class="ink" x="148" y="92" width="10" height="14"/>
+      <rect class="white" x="104" y="92" width="4" height="5"/>
+      <rect class="white" x="148" y="92" width="4" height="5"/>
+      <path class="ink" d="M120 124H144V132H136V138H128V132H120Z"/>
+      <rect class="blush" x="92" y="116" width="12" height="6"/>
+      <rect class="blush" x="158" y="116" width="12" height="6"/>
+      <use href="#pixel-face-details"/>
+      </g>
+    </g>
+  </symbol>
+
+  <symbol id="character-curls" viewBox="0 0 260 480">
+    <g class="pixel">
+      <g transform="matrix(.88 0 0 .88 15.6 18.24)">
+      <path class="hair-dark pixel-outline" d="M78 54H86V38H102V26H118V18H150V26H166V34H182V50H190V66H198V112H190V136H178V152H82V144H70V128H62V78H70V62H78Z"/>
+      </g>
+      <path class="skin pixel-outline" d="M90 268H130L128 304L124 342L124 368L120 412H98L96 372L90 344L88 306Z"/>
+      <path class="skin pixel-outline" d="M130 268H170L172 304L168 342L164 370L162 412H140L138 372L134 344L132 306Z"/>
+      <path class="skin-shadow pixel" d="M112 352H122V404H116ZM138 352H148V404H142Z"/>
+      <path class="skin pixel-outline" d="M120 140H140V168H152V180H108V168H120Z"/>
+      <path class="skin pixel-outline" d="M118 168H142L160 176L172 190L170 206L164 224L160 242L168 262L172 278H88L90 262L98 242L96 224L90 206L88 186L102 176Z"/>
+      <path class="skin pixel-outline" d="M88 184L78 198L72 222L70 240L72 260L76 280L74 290L74 306L82 314L92 312L96 302L94 288L92 266L90 246L92 224L96 204Z"/>
+      <path class="skin pixel-outline" d="M172 188L182 202L188 226L190 244L186 262L180 278L184 288L184 304L176 312L166 310L162 300L164 286L168 268L170 248L168 226L166 206Z"/>
+      <rect class="skin-shadow" x="122" y="150" width="18" height="12"/>
+      <g transform="matrix(.88 0 0 .88 15.6 18.24)">
+      <path class="skin pixel-outline" d="M88 72H96V56H112V48H154V56H170V72H178V120H170V136H154V152H106V144H90V128H82V80H88Z"/>
+      <path class="skin-shadow pixel" d="M90 112H102V132H114V144H104V136H90ZM158 112H170V132H158Z"/>
+      <path class="hair-dark pixel" d="M82 68H98V52H114V44H150V52H166V68H178V84H162V76H146V68H130V76H114V84H98V96H82Z"/>
+      <path class="hair-highlight pixel" d="M94 42H108V34H126V42H112V50H94ZM158 42H174V58H166V66H154V54H158Z"/>
+      <rect class="ink" x="104" y="92" width="10" height="14"/>
+      <rect class="ink" x="148" y="92" width="10" height="14"/>
+      <rect class="white" x="104" y="92" width="4" height="5"/>
+      <rect class="white" x="148" y="92" width="4" height="5"/>
+      <path class="ink" d="M120 124H140V132H120Z"/>
+      <rect class="blush" x="92" y="116" width="12" height="6"/>
+      <rect class="blush" x="158" y="116" width="12" height="6"/>
+      <use href="#pixel-face-details"/>
+      </g>
+    </g>
+  </symbol>
+
+  <symbol id="character-waves" viewBox="0 0 260 480">
+    <g class="pixel">
+      <g transform="matrix(.88 0 0 .88 15.6 18.24)">
+      <path class="hair-warm pixel-outline" d="M74 62H82V46H98V30H154V38H170V46H186V62H194V214H186V238H170V222H154V246H106V222H90V238H74V214H66V78H74Z"/>
+      </g>
+      <path class="skin pixel-outline" d="M90 268H130L128 304L124 342L124 368L120 412H98L96 372L90 344L88 306Z"/>
+      <path class="skin pixel-outline" d="M130 268H170L172 304L168 342L164 370L162 412H140L138 372L134 344L132 306Z"/>
+      <path class="skin-shadow pixel" d="M112 352H122V404H116ZM138 352H148V404H142Z"/>
+      <path class="skin pixel-outline" d="M120 140H140V168H152V180H108V168H120Z"/>
+      <path class="skin pixel-outline" d="M118 168H142L160 176L172 190L170 206L164 224L160 242L168 262L172 278H88L90 262L98 242L96 224L90 206L88 186L102 176Z"/>
+      <path class="skin pixel-outline" d="M88 184L78 198L72 222L70 240L72 260L76 280L74 290L74 306L82 314L92 312L96 302L94 288L92 266L90 246L92 224L96 204Z"/>
+      <path class="skin pixel-outline" d="M172 188L182 202L188 226L190 244L186 262L180 278L184 288L184 304L176 312L166 310L162 300L164 286L168 268L170 248L168 226L166 206Z"/>
+      <rect class="skin-shadow" x="122" y="150" width="18" height="12"/>
+      <g transform="matrix(.88 0 0 .88 15.6 18.24)">
+      <path class="skin pixel-outline" d="M88 72H96V56H112V48H154V56H170V72H178V120H170V136H154V152H106V144H90V128H82V80H88Z"/>
+      <path class="skin-shadow pixel" d="M90 112H102V132H114V144H104V136H90ZM158 112H170V132H158Z"/>
+      <path class="hair-warm pixel" d="M86 64H102V48H150V56H166V72H174V88H158V80H146V68H130V80H114V88H98V96H86Z"/>
+      <path class="hair-highlight pixel" d="M106 42H150V50H118V58H102V50H106ZM78 100H90V202H82V214H74V118H78ZM174 96H186V214H178V202H174Z"/>
+      <rect class="ink" x="104" y="92" width="10" height="14"/><rect class="ink" x="148" y="92" width="10" height="14"/>
+      <rect class="white" x="104" y="92" width="4" height="5"/><rect class="white" x="148" y="92" width="4" height="5"/>
+      <path class="ink" d="M120 124H144V132H136V138H128V132H120Z"/>
+      <rect class="blush" x="92" y="116" width="12" height="6"/><rect class="blush" x="158" y="116" width="12" height="6"/>
+      <use href="#pixel-face-details"/>
+      </g>
+    </g>
+  </symbol>
+
+  <symbol id="character-bob" viewBox="0 0 260 480">
+    <g class="pixel">
+      <g transform="matrix(.88 0 0 .88 15.6 18.24)">
+      <path fill="#3d405c" class="pixel-outline" d="M78 62H86V46H102V30H158V38H174V46H182V62H190V174H178V190H162V206H98V190H82V174H70V78H78Z"/>
+      </g>
+      <path class="skin pixel-outline" d="M90 268H130L128 304L124 342L124 368L120 412H98L96 372L90 344L88 306Z"/>
+      <path class="skin pixel-outline" d="M130 268H170L172 304L168 342L164 370L162 412H140L138 372L134 344L132 306Z"/>
+      <path class="skin-shadow pixel" d="M112 352H122V404H116ZM138 352H148V404H142Z"/>
+      <path class="skin pixel-outline" d="M120 140H140V168H152V180H108V168H120Z"/>
+      <path class="skin pixel-outline" d="M118 168H142L160 176L172 190L170 206L164 224L160 242L168 262L172 278H88L90 262L98 242L96 224L90 206L88 186L102 176Z"/>
+      <path class="skin pixel-outline" d="M88 184L78 198L72 222L70 240L72 260L76 280L74 290L74 306L82 314L92 312L96 302L94 288L92 266L90 246L92 224L96 204Z"/>
+      <path class="skin pixel-outline" d="M172 188L182 202L188 226L190 244L186 262L180 278L184 288L184 304L176 312L166 310L162 300L164 286L168 268L170 248L168 226L166 206Z"/>
+      <rect class="skin-shadow" x="122" y="150" width="18" height="12"/>
+      <g transform="matrix(.88 0 0 .88 15.6 18.24)">
+      <path class="skin pixel-outline" d="M88 72H96V56H112V48H154V56H170V72H178V120H170V136H154V152H106V144H90V128H82V80H88Z"/>
+      <path class="skin-shadow pixel" d="M90 112H102V132H114V144H104V136H90ZM158 112H170V132H158Z"/>
+      <path fill="#3d405c" class="pixel" d="M86 64H102V48H154V56H170V72H174V94H162V82H150V70H132V78H118V86H102V98H86ZM78 112H90V170H102V188H86V176H78ZM170 104H182V176H174V188H158V172H170Z"/>
+      <path fill="#686b8c" class="pixel" d="M110 42H154V50H122V58H102V50H110Z"/>
+      <rect class="ink" x="104" y="92" width="10" height="14"/><rect class="ink" x="148" y="92" width="10" height="14"/>
+      <rect class="white" x="104" y="92" width="4" height="5"/><rect class="white" x="148" y="92" width="4" height="5"/>
+      <path class="ink" d="M122 126H140V134H122Z"/>
+      <rect class="blush" x="92" y="116" width="12" height="6"/><rect class="blush" x="158" y="116" width="12" height="6"/>
+      <use href="#pixel-face-details"/>
+      </g>
+    </g>
+  </symbol>
+
+  <symbol id="upper-tee" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-upper-short"/><path class="garment-alt pixel" d="M118 166H142V174H118ZM88 266H172V274H88Z"/></g></symbol>
+  <symbol id="upper-tank" viewBox="0 0 260 480"><g class="pixel"><path class="garment pixel-outline" d="M104 170H122V182H138V170H156L164 184L164 206L160 226L158 244L166 262L170 276H90L94 262L102 244L100 226L96 206L96 184Z"/><path class="pixel-detail" d="M122 182H138"/></g></symbol>
+  <symbol id="upper-polo" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-upper-short"/><path class="garment-alt pixel-outline" d="M112 164H148V176L140 190H120L112 176Z"/><path class="ink pixel" d="M127 190H133V264H127Z"/></g></symbol>
+  <symbol id="upper-shirt" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-upper-long"/><path class="garment-alt pixel" d="M114 164H146V178L136 188H124L114 178Z"/><path class="ink pixel" d="M127 188H133V268H127Z"/><rect class="garment-alt" x="104" y="214" width="18" height="18"/><rect class="garment-alt" x="138" y="214" width="18" height="18"/></g></symbol>
+  <symbol id="upper-long-sleeve" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-upper-long"/><path class="garment-alt pixel" d="M116 164H144V172H116Z"/></g></symbol>
+  <symbol id="upper-sweatshirt" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-upper-heavy"/><path class="garment-alt pixel" d="M80 272H180V284H78ZM68 272H92V288H70ZM164 272H190V288H162Z"/></g></symbol>
+  <symbol id="upper-cardigan" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-upper-long"/><path class="garment-alt pixel" d="M122 168H138V272H122Z"/><path class="ink pixel" d="M127 182H133V190H127ZM127 210H133V218H127ZM127 238H133V246H127Z"/></g></symbol>
+  <symbol id="upper-track-jacket" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-upper-long"/><path class="garment-alt pixel" d="M126 166H134V274H126Z"/><path class="garment-alt pixel" d="M82 190L76 206L72 228L70 246L72 264L76 280H80L78 264L76 246L78 228L82 208L86 194ZM178 192L184 208L190 230L192 246L188 266L182 280H178L182 264L186 246L184 230L180 208L174 194Z"/><path class="white pixel" d="M80 196L76 212L74 228H78L82 212L84 200ZM180 196L184 212L186 228H190L188 212L184 198Z"/></g></symbol>
+  <symbol id="upper-hoodie" viewBox="0 0 260 480"><g class="pixel"><path class="garment-dark pixel-outline" d="M104 150L108 144H152L156 150V176H104Z"/><use href="#pixel-upper-heavy"/><path class="garment-alt pixel-outline" d="M104 232H156V262H104Z"/><path class="pixel-detail" d="M120 172V198M140 172V198"/></g></symbol>
+  <symbol id="upper-crewneck" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-upper-heavy"/><path class="garment-alt pixel" d="M116 164H144V174H116Z"/></g></symbol>
+  <symbol id="upper-flannel" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-upper-long"/><path class="pixel-detail" d="M104 176V266M130 178V268M156 176V266M90 206H170M90 238H170"/></g></symbol>
+  <symbol id="upper-denim-jacket" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-upper-long"/><path class="garment-alt pixel-outline" d="M112 164H148V178L130 194L112 178Z"/><path class="pixel-detail" d="M112 190V268M148 190V268M100 216H122M138 216H160"/></g></symbol>
+  <symbol id="upper-sweater" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-upper-heavy"/><path class="garment-alt pixel" d="M102 200H114V212H126V224H138V212H150V200H160V216H150V228H138V240H126V228H114V216H102Z"/></g></symbol>
+  <symbol id="upper-fleece" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-upper-heavy"/><path class="garment-alt pixel" d="M126 166H134V280H126ZM102 220H158V230H102Z"/><rect class="garment-dark" x="102" y="246" width="22" height="20"/><rect class="garment-dark" x="136" y="246" width="22" height="20"/></g></symbol>
+  <symbol id="upper-light-puffer" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-upper-heavy"/><path class="pixel-detail" d="M82 196H178M82 228H176M84 262H178M130 172V282"/></g></symbol>
+  <symbol id="upper-insulated-track" viewBox="0 0 260 480"><g class="pixel"><use href="#upper-light-puffer"/><path class="garment-alt pixel" d="M82 190L76 206L72 228L70 246L72 264H78L76 246L78 228L82 208L86 194ZM178 192L184 208L190 230L192 246L188 266H182L186 246L184 230L180 208L174 194Z"/></g></symbol>
+  <symbol id="upper-windbreaker" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-upper-long"/><path class="garment-alt pixel" d="M90 186H170V206H90Z"/><path class="garment-alt pixel" d="M126 166H134V274H126Z"/><path class="garment-dark pixel" d="M96 252H164V264H96Z"/></g></symbol>
+  <symbol id="upper-bomber" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-upper-heavy"/><path class="garment-dark pixel" d="M78 268H182V284H78ZM68 270H92V288H70ZM164 270H190V288H162Z"/><path class="garment-alt pixel" d="M126 166H134V268H126Z"/></g></symbol>
+  <symbol id="upper-coat" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-upper-coat"/></g></symbol>
+  <symbol id="upper-puffer-vest" viewBox="0 0 260 480"><g class="pixel"><path class="garment pixel-outline" d="M114 164H146L164 172L174 188L174 208L168 228L164 246L172 264L176 280H84L88 264L96 246L92 228L86 208L86 188L96 172Z"/><path class="pixel-detail" d="M90 198H170M90 230H168M88 262H172M130 168V278"/></g></symbol>
+  <symbol id="upper-parka" viewBox="0 0 260 480"><g class="pixel"><path class="garment-dark pixel-outline" d="M104 150L108 144H152L156 150V176H104Z"/><use href="#pixel-upper-coat"/><path class="garment-alt pixel" d="M78 322H182V340H76Z"/></g></symbol>
+  <symbol id="upper-puffer" viewBox="0 0 260 480"><g class="pixel"><use href="#upper-light-puffer"/></g></symbol>
+  <symbol id="upper-wool-coat" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-upper-coat"/><path class="garment-alt pixel-outline" d="M112 164H128L130 188L114 212L100 182ZM148 164H132L130 188L146 212L160 182Z"/></g></symbol>
+  <symbol id="upper-shell" viewBox="0 0 260 480"><g class="pixel"><use href="#upper-windbreaker"/><path class="cream pixel" d="M84 268H176V276H84Z"/></g></symbol>
+  <symbol id="upper-shearling" viewBox="0 0 260 480"><g class="pixel"><use href="#upper-bomber"/><path class="cream pixel-outline" d="M110 160H150V178L140 190H120L110 178Z"/><path class="cream pixel" d="M78 268H182V284H78ZM68 270H92V288H70ZM164 270H190V288H162Z"/></g></symbol>
+
+  <symbol id="lower-denim-shorts" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-lower-shorts"/></g></symbol>
+  <symbol id="lower-cargo-shorts" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-lower-shorts"/><path class="garment pixel-outline" d="M84 300H110V324H84ZM150 300H176V324H150Z"/></g></symbol>
+  <symbol id="lower-bike-shorts" viewBox="0 0 260 480"><g class="pixel"><path class="garment-dark pixel-outline" d="M88 266H172L174 282L172 350H136L130 306L124 350H88L86 282Z"/></g></symbol>
+  <symbol id="lower-running-shorts" viewBox="0 0 260 480"><g class="pixel"><path class="garment pixel-outline" d="M84 266H176L180 284L182 330H142L130 302L118 330H78L80 284Z"/><path class="garment-alt pixel" d="M80 286H90V326H80ZM170 286H180V326H170Z"/></g></symbol>
+  <symbol id="lower-track-shorts" viewBox="0 0 260 480"><g class="pixel"><use href="#lower-running-shorts"/><path class="white pixel" d="M84 288H88V322H84ZM172 288H176V322H172Z"/></g></symbol>
+  <symbol id="lower-jeans" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-lower-slim"/><path class="garment-alt pixel" d="M92 270H168L164 346L162 408H142L130 306L118 408H98L96 346Z"/><path class="pixel-detail" d="M86 282H174M130 282V306"/></g></symbol>
+  <symbol id="lower-trousers" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-lower-slim"/></g></symbol>
+  <symbol id="lower-chinos" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-lower-slim"/><path class="garment-alt pixel" d="M92 272H124L120 408H98L96 346ZM136 272H168L164 408H140L136 346Z"/></g></symbol>
+  <symbol id="lower-joggers" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-lower-relaxed"/><path class="garment-dark pixel" d="M80 396H122V412H80ZM138 396H182V412H138Z"/><path class="pixel-detail" d="M100 304H120M140 304H160"/></g></symbol>
+  <symbol id="lower-leggings" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-lower-slim"/></g></symbol>
+  <symbol id="lower-parachute" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-lower-relaxed"/><path class="pixel-detail" d="M82 354H122M138 354H178"/><rect class="garment-dark" x="80" y="304" width="30" height="28"/><rect class="garment-dark" x="152" y="304" width="28" height="28"/></g></symbol>
+  <symbol id="lower-wide-leg" viewBox="0 0 260 480"><g class="pixel"><path class="garment-alt pixel-outline" d="M80 266H180L184 286L188 414H136L130 310L124 414H72L76 286Z"/><path class="pixel-detail" d="M78 284H182M130 284V310"/></g></symbol>
+  <symbol id="lower-thermal" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-lower-slim"/><path class="garment-alt pixel" d="M88 316H126V324H88ZM92 352H122V360H92ZM134 316H172V324H134ZM138 352H168V360H138Z"/></g></symbol>
+  <symbol id="lower-utility" viewBox="0 0 260 480"><g class="pixel"><use href="#lower-parachute"/><path class="garment-alt pixel-outline" d="M78 302H108V336H78ZM152 302H182V336H152Z"/></g></symbol>
+
+  <symbol id="footwear-canvas" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-shoe-low"/></g></symbol>
+  <symbol id="footwear-low-top" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-shoe-low"/><path class="garment pixel" d="M96 410H118V418H96ZM142 410H164V418H142Z"/></g></symbol>
+  <symbol id="footwear-trainers" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-shoe-low"/><path class="garment pixel" d="M82 420H126V430H78V424H82ZM138 420H176V430H136V424H138Z"/></g></symbol>
+  <symbol id="footwear-running" viewBox="0 0 260 480"><g class="pixel"><use href="#footwear-trainers"/><path class="garment-dark pixel" d="M76 433H128V438H76ZM134 433H180V438H134Z"/></g></symbol>
+  <symbol id="footwear-high-tops" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-shoe-high"/></g></symbol>
+  <symbol id="footwear-skate" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-shoe-low"/><path class="garment-dark pixel" d="M92 414H120V418H92ZM142 414H166V418H142ZM76 426H128V430H76ZM136 426H182V430H136Z"/></g></symbol>
+  <symbol id="footwear-casual" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-shoe-low"/><path fill="#76513d" class="pixel" d="M80 420H128V436H78V426H80ZM136 420H182V436H136Z"/></g></symbol>
+  <symbol id="footwear-warm" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-shoe-high"/><path class="cream pixel" d="M90 376H122V388H90ZM138 376H168V388H138Z"/></g></symbol>
+  <symbol id="footwear-boots" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-shoe-boot"/></g></symbol>
+  <symbol id="footwear-winter" viewBox="0 0 260 480"><g class="pixel"><use href="#pixel-shoe-boot"/><path class="cream pixel" d="M90 354H124V368H90ZM138 354H170V368H138Z"/></g></symbol>
+
+  <symbol id="modifier-rain-shell" viewBox="0 0 260 480"><g class="pixel"><use href="#upper-shell"/></g></symbol>
+  <symbol id="modifier-wind-layer" viewBox="0 0 260 480"><g class="pixel"><use href="#upper-windbreaker"/></g></symbol>
+  <symbol id="modifier-insulated-layer" viewBox="0 0 260 480"><g class="pixel"><use href="#upper-light-puffer"/></g></symbol>
+  <symbol id="modifier-puffer" viewBox="0 0 260 480"><g class="pixel"><use href="#upper-puffer"/></g></symbol>
+  <symbol id="modifier-cap" viewBox="0 0 260 480"><g class="pixel"><g transform="matrix(.88 0 0 .88 15.6 18.24)"><path class="garment pixel-outline" d="M86 54H94V38H110V28H154V36H170V46H178V72H94V64H86Z"/><path class="garment-dark pixel-outline" d="M164 66H204V82H156V74H164Z"/><rect class="garment-alt" x="118" y="34" width="28" height="12"/></g></g></symbol>
+  <symbol id="modifier-knit-hat" viewBox="0 0 260 480"><g class="pixel"><g transform="matrix(.88 0 0 .88 15.6 18.24)"><path class="garment pixel-outline" d="M92 62V46H100V34H112V24H148V34H160V46H168V62Z"/><path class="garment-alt pixel-outline" d="M86 58H174V82H86Z"/><rect class="garment-dark" x="124" y="12" width="16" height="16"/></g></g></symbol>
+  <symbol id="modifier-gloves" viewBox="0 0 260 480"><g class="pixel"><path class="garment pixel-outline" d="M70 284H96V318H72Z"/><path class="garment pixel-outline" d="M160 282H188V316H162Z"/><path class="garment-alt pixel" d="M70 284H96V294H70ZM160 282H188V292H160Z"/></g></symbol>
+  <symbol id="modifier-waterproof-boots" viewBox="0 0 260 480"><g class="pixel"><use href="#footwear-winter"/></g></symbol>
+</svg>
